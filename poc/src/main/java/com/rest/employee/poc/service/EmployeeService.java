@@ -13,7 +13,7 @@ public interface EmployeeService {
 
 	public Employee getEmpById(int id);
 
-	public void addEmployee(Employee emp);
+	public boolean addEmployee(Employee emp);
 
 	public boolean updateEmployee(Employee emp);
 	

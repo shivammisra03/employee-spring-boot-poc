@@ -1,10 +1,14 @@
 package com.rest.employee.poc.model;
 
 public class Employee {
-
+	
 	private int id;
 	private String name;
 	private int salary;
+	
+	public Employee() {
+		
+	}
 
 	public Employee(int id, String name, int salary) {
 		this.id = id;

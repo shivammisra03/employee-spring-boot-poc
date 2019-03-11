@@ -5,6 +5,9 @@ public class ResponseMsg {
 	private int code;
 	private String msg;
 
+	public ResponseMsg() {
+	}
+
 	public ResponseMsg(int code, String msg) {
 		this.code = code;
 		this.msg = msg;

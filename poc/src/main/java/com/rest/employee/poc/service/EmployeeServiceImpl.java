@@ -36,8 +36,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public void addEmployee(Employee emp) {
+	public boolean addEmployee(Employee emp) {
 		employees.add(emp);
+		return true;
 
 	}
 
@@ -56,7 +57,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return true;
 
 	}
-	
+
 	@Override
 	public boolean deleteEmployee(Employee e) {
 		if (employees.stream().noneMatch(emp -> emp.getId() == e.getId())) {

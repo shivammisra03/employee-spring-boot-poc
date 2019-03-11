@@ -26,6 +26,11 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService empService;
 
+	/**
+	 * get all the employees that are existing
+	 * 
+	 * @return List of Employees
+	 */
 	@GetMapping(path = "/getAll")
 	public List<Employee> getAll() {
 
@@ -33,6 +38,12 @@ public class EmployeeController {
 
 	}
 
+	/**
+	 * get an employee using the id passed as query param
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@GetMapping(path = "/getByQueryParam")
 	public ResponseEntity getByQueryParam(@RequestParam int id) {
 		Employee e = empService.getEmpById(id);
@@ -45,6 +56,13 @@ public class EmployeeController {
 
 	}
 
+	/**
+	 * get an employee based on path variable 'id' and use headers
+	 * 
+	 * @param id
+	 * @param headers
+	 * @return ResponseEntity
+	 */
 	@GetMapping(path = "/getByPathParamId/{id}")
 	public ResponseEntity getEmployeeUsingPathId(@PathVariable int id, @RequestHeader String headers) {
 		System.out.println("Header : " + headers);
@@ -58,6 +76,12 @@ public class EmployeeController {
 
 	}
 
+	/**
+	 * add an Employee
+	 * 
+	 * @param emp
+	 * @return ResponseEntity
+	 */
 	@PostMapping(path = "/addEmployee")
 	public ResponseEntity addEmployee(@RequestBody Employee emp) {
 		empService.addEmployee(emp);
@@ -65,6 +89,12 @@ public class EmployeeController {
 
 	}
 
+	/**
+	 * update existing employee based on id
+	 * 
+	 * @param emp
+	 * @return ResponseEntity
+	 */
 	@PutMapping(path = "/updateEmployee")
 	public ResponseEntity updateEmployee(@RequestBody Employee emp) {
 		if (empService.updateEmployee(emp)) {
@@ -75,8 +105,14 @@ public class EmployeeController {
 
 	}
 
+	/**
+	 * delete an employee if it exists
+	 * 
+	 * @param e Employee
+	 * @return ResponseEntity
+	 */
 	@DeleteMapping(value = "/deleteEmployee")
-	public ResponseEntity deletEmployee(@RequestBody Employee e) {
+	public ResponseEntity deleteEmployee(@RequestBody Employee e) {
 
 		if (empService.deleteEmployee(e)) {
 			return ResponseEntity.ok().body(new ResponseMsg(200, "Employee Successfully Deleted"));
