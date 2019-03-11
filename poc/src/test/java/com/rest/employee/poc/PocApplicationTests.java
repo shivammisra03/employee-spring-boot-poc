@@ -83,7 +83,8 @@ public class PocApplicationTests {
 		when(employeeService.addEmployee(Mockito.any(Employee.class))).thenReturn(true);
 
 		mockMvc.perform(post("/employee/addEmployee").contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON).content(empReq)).andDo(print()).andExpect(status().is(200));
+				.accept(MediaType.APPLICATION_JSON).content(empReq)).andDo(print()).andExpect(status().is(200))
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
 
 	}
 
@@ -95,7 +96,8 @@ public class PocApplicationTests {
 		// as a matcher
 		when(employeeService.updateEmployee(Mockito.any(Employee.class))).thenReturn(true);
 		mockMvc.perform(put("/employee/updateEmployee").contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON).content(empReq)).andDo(print()).andExpect(status().is(200));
+				.accept(MediaType.APPLICATION_JSON).content(empReq)).andDo(print()).andExpect(status().is(200))
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
 
 	}
 
@@ -107,7 +109,8 @@ public class PocApplicationTests {
 		// as a matcher
 		when(employeeService.updateEmployee(Mockito.any(Employee.class))).thenReturn(false);
 		mockMvc.perform(put("/employee/updateEmployee").contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON).content(empReq)).andDo(print()).andExpect(status().is(400));
+				.accept(MediaType.APPLICATION_JSON).content(empReq)).andDo(print()).andExpect(status().is(400))
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
 
 	}
 
@@ -119,7 +122,8 @@ public class PocApplicationTests {
 		// as a matcher
 		when(employeeService.deleteEmployee(Mockito.any(Employee.class))).thenReturn(true);
 		mockMvc.perform(delete("/employee/deleteEmployee").contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON).content(empReq)).andDo(print()).andExpect(status().is(200));
+				.accept(MediaType.APPLICATION_JSON).content(empReq)).andDo(print()).andExpect(status().is(200))
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
 
 	}
 
@@ -133,7 +137,8 @@ public class PocApplicationTests {
 		MvcResult result = mockMvc
 				.perform(delete("/employee/deleteEmployee").contentType(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON).content(empReq))
-				.andDo(print()).andExpect(status().is(400)).andReturn();
+				.andDo(print()).andExpect(status().is(400))
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn();
 
 		ResponseMsg responseMsg = objMapper.readValue(new File("src/test/resources/response/employeeErrorResp.json"),
 				ResponseMsg.class);
